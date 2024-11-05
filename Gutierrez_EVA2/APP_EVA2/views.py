@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Inscripcion
 from .forms import InscripcionForm
 
-# Listar inscripciones
 def listar_inscripciones(request):
     inscripciones = Inscripcion.objects.all()
     return render(request, 'listar_inscripciones.html', {'inscripciones': inscripciones})
 
-# Agregar inscripción
 def agregar_inscripcion(request):
     if request.method == 'POST':
         form = InscripcionForm(request.POST)
@@ -18,7 +16,6 @@ def agregar_inscripcion(request):
         form = InscripcionForm()
     return render(request, 'agregar_inscripcion.html', {'form': form})
 
-# Modificar inscripción
 def modificar_inscripcion(request, id):
     inscripcion = Inscripcion.objects.get(id=id) 
     if request.method == 'POST':
@@ -30,7 +27,6 @@ def modificar_inscripcion(request, id):
         form = InscripcionForm(instance=inscripcion)
     return render(request, 'agregar_inscripcion.html', {'form': form})
 
-# Eliminar inscripción
 def eliminar_inscripcion(request, id):
     inscripcion = Inscripcion.objects.get(id=id)  
     if request.method == 'POST':
